@@ -11,44 +11,44 @@
 </head>
 <body>
 <?php
-function quickSort($arr)
+function quickSort($array)
 {
     // count () возвращает количество элементов в массиве
-    $count = count($arr);
+    $count = count($array);
 
     // Определяем, нужна ли сортировка (исключая не массив, а количество элементов массива меньше или равно 1)
-    if ($count <= 1) return $arr;
+    if ($count <= 1) return $array;
 
     // Определяем промежуточное значение, которое является ссылочным значением
-    $baseValue = $arr[0];
+    $pivot = $array[0];
     /**
      * Определить два пустых массива для разделения исходного массива слева и справа
-     * $ leftArr хранит массив меньше, чем эталонное значение, которое является левым разделом
-     * $ rightArr хранит массив больше, чем эталонное значение, которое является правильным разделом
+     * $ leftSide хранит массив меньше, чем эталонное значение, которое является левым разделом
+     * $ rightSide хранит массив больше, чем эталонное значение, которое является правильным разделом
      */
 
-    $leftArr = $rightArr = array();
+    $leftSide = $rightSide = array();
 
     // Сравнить среднее значение массива, обратить внимание на значение $ i, начиная с 1 (или $ i = 0; $ i <$ count-1)
     for ($i = 1; $i < $count; $i++)
     {
-        if ($baseValue > $arr[$i])
+        if ($pivot > $array[$i])
         {
             // Меньше значения эталона помещается в левый раздел
-            $leftArr[] = $arr[$i];
+            $leftSide[] = $array[$i];
         } else
         {
             // Меньше, чем эталонное значение помещается в правильный раздел
-            $rightArr[] = $arr[$i];
+            $rightSide[] = $array[$i];
         }
     }
 
     // Рекурсивная сортировка подпоследовательностей элементов, меньших, чем контрольное значение, и подпоследовательностей элементов, превышающих контрольное значение
-    $leftArr = quickSort($leftArr);
-    $rightArr = quickSort($rightArr);
+    $leftSide = quickSort($leftSide);
+    $rightSide = quickSort($rightSide);
 
     // Возвращаем объединенный и отсортированный массив, помещаем значения эталона в массив и объединяем их вместе, обращаем внимание на порядок, левый раздел помещается впереди, значение эталона размещается посередине, а правый раздел помещается сзади
-    return array_merge($leftArr, array($baseValue), $rightArr);
+    return array_merge($leftSide, array($pivot), $rightSide);
 }
 
 function binarySearch(array $arr, $search_for)
@@ -87,9 +87,9 @@ function binarySearch(array $arr, $search_for)
     return false;
 }
 
-$arr = [10, 5, 18, 11, 13, 19, 30, 25, 10];
+$array = [10, 5, 18, 11, 13, 19, 30, 25, 10];
 //var_dump(quickSort($arr));    //вывод отсортированного массива по жоскаму )0)
-$sorted_arr = quickSort($arr);  //запись отсортированного массива в переменную
+$sorted_arr = quickSort($array);  //запись отсортированного массива в переменную
 $searched_arr = binarySearch($sorted_arr, 30);
 //var_dump($sorted_arr);    //тестовый вывод записанного результата работы сортировки
 //var_dump(binarySearch($sorted_arr, 6)); //вывод результата бинарного поиска
