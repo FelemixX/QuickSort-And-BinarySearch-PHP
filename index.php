@@ -24,8 +24,7 @@ function quickSort($arr)
         {
             // Меньше значения эталона помещается в левый раздел
             $leftArr[] = $arr[$i];
-        }
-        else
+        } else
         {
             // Меньше, чем эталонное значение помещается в правильный раздел
             $rightArr[] = $arr[$i];
@@ -39,43 +38,47 @@ function quickSort($arr)
     // Возвращаем объединенный и отсортированный массив, помещаем значения эталона в массив и объединяем их вместе, обращаем внимание на порядок, левый раздел помещается впереди, значение эталона размещается посередине, а правый раздел помещается сзади
     return array_merge($leftArr, array($baseValue), $rightArr);
 }
-function binarySearch(Array $arr, $x)
+
+function binarySearch(array $arr, $x)
 {
-    // check for empty array
+    // проверяем, не пустой ли массив поступил на вход
     if (count($arr) === 0)
         return false;
 
     $low = 0;
     $high = count($arr) - 1;
 
-    while ($low <= $high) {
+    while ($low <= $high)
+    {
 
-        // compute middle index
+        // считаем значение в середине массива
         $mid = floor(($low + $high) / 2);
 
-        // element found at mid
-        if($arr[$mid] == $x) {
+        // если нашли искомое в середине массива
+        if ($arr[$mid] == $x)
+        {
             return true;
         }
 
-        if ($x < $arr[$mid]) {
-            // search the left side of the array
-            $high = $mid -1;
-        }
-        else {
-            // search the right side of the array
+        if ($x < $arr[$mid])
+        {
+            // ищем искомое значение в левой части массива
+            $high = $mid - 1;
+        } else
+        {
+            // ищем правой части
             $low = $mid + 1;
         }
     }
 
-    // If we reach here element x doesnt exist
+    // если не нашли ничего подходящего, значит заданное значение не существует, возвращаем false
     return false;
 }
 
 $arr = [10, 5, 18, 11, 13, 19, 30, 25, 10];
-//var_dump(quickSort($arr));
-$sorted_arr = quickSort($arr);
-//var_dump($sorted_arr);
-var_dump(binarySearch($sorted_arr, 6));
+//var_dump(quickSort($arr));    //вывод отсортированного массива по жоскаму )0)
+$sorted_arr = quickSort($arr);  //запись отсортированного массива в переменную
+//var_dump($sorted_arr);    //тестовый вывод записанного результата работы сортировки
+var_dump(binarySearch($sorted_arr, 6)); //вывод результата бинарного поиска
 
 
