@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Это говнокод</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
 <?php
 function quickSort($arr)
 {
@@ -78,7 +90,28 @@ function binarySearch(array $arr, $x)
 $arr = [10, 5, 18, 11, 13, 19, 30, 25, 10];
 //var_dump(quickSort($arr));    //вывод отсортированного массива по жоскаму )0)
 $sorted_arr = quickSort($arr);  //запись отсортированного массива в переменную
+$searched_arr = binarySearch($sorted_arr, 30);
 //var_dump($sorted_arr);    //тестовый вывод записанного результата работы сортировки
-var_dump(binarySearch($sorted_arr, 6)); //вывод результата бинарного поиска
+//var_dump(binarySearch($sorted_arr, 6)); //вывод результата бинарного поиска
+
+?>
+
+<?php
+echo "Quick sort " . "<br><br>";
+foreach ($sorted_arr as &$value) {
+    echo $value . "<br>";
+}
+?>
+
+
+//////////////////////////////////////////
+
+
+<?php
+echo "<br><br>". "Binary search: " . $searched_arr;
+?>
+
+</body>
+</html>
 
 
