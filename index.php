@@ -63,14 +63,14 @@ function quickSort($array)
     return array_merge($leftSide, array($pivot), $rightSide); //array_merge - объединение N массивов в один
 }
 
-function binarySearch(array $unsortedArray, $searchFor)
+function binarySearch(array $array, $searchFor)
 {
     // проверяем, не пустой ли массив поступил на вход
-    if (count($unsortedArray) === 0)
+    if (count($array) === 0)
         return false;
 
     $low = 0;
-    $high = count($unsortedArray) - 1; //count - возвращает количество элементов в массиве
+    $high = count($array) - 1; //count - возвращает количество элементов в массиве
 
     while ($low <= $high)
     {
@@ -79,12 +79,12 @@ function binarySearch(array $unsortedArray, $searchFor)
         $mid = floor(($low + $high) / 2); //floor - округление в меньшую сторону
 
         // если нашли искомое в середине массива
-        if ($unsortedArray[$mid] == $searchFor)
+        if ($array[$mid] == $searchFor)
         {
             return true; //возвращаем 1
         }
 
-        if ($searchFor < $unsortedArray[$mid])
+        if ($searchFor < $array[$mid])
         {
             // ищем искомое значение в левой части массива
             $high = $mid - 1;
