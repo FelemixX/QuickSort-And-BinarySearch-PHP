@@ -23,18 +23,20 @@ function quickSort($array)
     // count () возвращает количество элементов в массиве
     $count = count($array);
 
-    // Определяем, нужна ли сортировка (исключая не массив, а количество элементов массива меньше или равно 1)
-    if ($count <= 1) return $array;
+    // проверяем, нужна ли сортировка. Если в массиве 1 или меньше элементов, то сортировать там нечего и незачем
+    if ($count <= 1)
+        return $array;
 
-    // определяем опорное вхождение в массиве
+    // делаем первое вхождение в массив - опорным. Сортировать будем относительно него
     $pivot = $array[0];
+
     /**
-     * Определить два пустых массива для разделения исходного массива слева и справа
+
      * $ leftSide хранит массив меньше, чем эталонное значение, которое является левым разделом
      * $ rightSide хранит массив больше, чем эталонное значение, которое является правильным разделом
      */
 
-    $leftSide = $rightSide = array();
+    $leftSide = $rightSide = array();   //array инициализирует переменные, как массивы
 
     // сравниваем первое вхождение в массиве с остальными
     for ($i = 1; $i < $count; $i++)
@@ -43,43 +45,44 @@ function quickSort($array)
         {
             // помещаем его слева от опорного вхождения
             $leftSide[] = $array[$i];
-        } else
+        }
+        else
         {
             // если опорное значение меньше следующего вхождения, то помещаем его справа
             $rightSide[] = $array[$i];
         }
     }
 
-    // после того как получили левую и правую части массива, сортируем их
+    // после того как получили левую и правую части массива, рекурсивно сортируем их
     $leftSide = quickSort($leftSide);
     $rightSide = quickSort($rightSide);
 
     // делаем конкатенацию отсортированных левой части, опорного значения и правой части
-    return array_merge($leftSide, array($pivot), $rightSide);
+    return array_merge($leftSide, array($pivot), $rightSide); //array_merge - объединение N массивов в один
 }
 
-function binarySearch(array $unsorted_array, $search_for)
+function binarySearch(array $unsortedArray, $searchFor)
 {
     // проверяем, не пустой ли массив поступил на вход
-    if (count($unsorted_array) === 0)
+    if (count($unsortedArray) === 0)
         return false;
 
     $low = 0;
-    $high = count($unsorted_array) - 1;
+    $high = count($unsortedArray) - 1; //count - возвращает количество элементов в массиве
 
     while ($low <= $high)
     {
 
         // находим значение вхождение в середине массива
-        $mid = floor(($low + $high) / 2);
+        $mid = floor(($low + $high) / 2); //floor - округление в меньшую сторону
 
         // если нашли искомое в середине массива
-        if ($unsorted_array[$mid] == $search_for)
+        if ($unsortedArray[$mid] == $searchFor)
         {
-            return true;
+            return true; //возвращаем 1
         }
 
-        if ($search_for < $unsorted_array[$mid])
+        if ($searchFor < $unsortedArray[$mid])
         {
             // ищем искомое значение в левой части массива
             $high = $mid - 1;
@@ -90,20 +93,20 @@ function binarySearch(array $unsorted_array, $search_for)
         }
     }
 
-    // если не нашли ничего подходящего, значит заданное значение не существует, возвращаем false
+    // если не нашли ничего подходящего, значит заданное значение не существует, возвращаем 0
     return false;
 }
 
 $array = [10, -5, 18, 11, 13, -19, 30, 25, 10]; //массив с числами
 
-$sorted_arr = quickSort($array);  //запись отсортированного массива в переменную
-$searched_arr = binarySearch($sorted_arr, 30);  //передаем массив и число, которое надо найти в функцию бинарного поиска
+$sortedArray = quickSort($array);  //запись отсортированного массива в переменную
+$searchedArray = binarySearch($sortedArray, 30);  //передаем массив и число, которое надо найти в функцию бинарного поиска
 
 ?>
 
 <?php
-echo "Quick sort " . "<br><br>";
-foreach ($sorted_arr as &$value)
+echo "Quick sort " . "<br><br>";    //ну типа вывод на страничку
+foreach ($sortedArray as &$value)
 {
     echo $value . "<br>";
 }
@@ -114,7 +117,7 @@ foreach ($sorted_arr as &$value)
 
 
 <?php
-echo "<br><br>" . "Binary search: " . $searched_arr;
+echo "<br><br>" . "Binary search: " . $searchedArray;   //ну типа еще один вывод
 ?>
 
 </body>
